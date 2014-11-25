@@ -25,7 +25,8 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-
+EMAIL_HOST  = 'localhost'
+EMAIL_PORT = 1025
 
 # Application definition
 
@@ -38,6 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'events',
     'socialgraph',
+    'pagination',
+    'gravatar',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,13 +52,21 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pagination.middleware.PaginationMiddleware',
 )
-
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
+    "django.contrib.auth.context_processors.auth",
+    #"darktwit.context_processors.production",
+    )
 ROOT_URLCONF = 'darktwit.urls'
 
 WSGI_APPLICATION = 'darktwit.wsgi.application'
 
-
+ACCOUNT_ACTIVATION_DAYS = 7
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
