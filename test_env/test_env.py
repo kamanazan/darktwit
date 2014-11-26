@@ -1,8 +1,8 @@
 def test_base_urls():
     try:
-        from django.conf.urls.defaults import *
+        from django.conf.urls import patterns,url,include
     except ImportError:
-        print "***FAIL:from django.conf.urls.defaults import * ***"
+        print "***FAIL:from django.conf.urls import patterns,url,include ***"
     try:
         from django.conf import settings
     except ImportError:
