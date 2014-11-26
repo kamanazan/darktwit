@@ -23,3 +23,21 @@ def test_base_urls():
         from django.views.generic.list_detail import object_list
     except ImportError:
         print "***FAIL: from django.views.generic.list_detail import object_list ***"
+def test_events_models():
+    try: 
+        from datetime import datetime,timedelta
+    except ImportError:
+        print "***FAIL: from datetime import datetime,timedelta ***"
+    try:
+        from django.db import models
+    except ImportError:
+        print "***FAIL: from django.db import models ***"
+    
+    try:
+        from django.contrib.auth.models import User
+    except ImportError:
+        print "***FAIL: from django.contrib.auth.models import User ***"
+    try:
+        from django.db.models.query import QuerySet
+    except ImportError:
+        print "***FAIL: from django.db.models.query import QuerySet ***"
