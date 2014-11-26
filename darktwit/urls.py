@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, url, include
 from django.conf import settings
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.views.generic.list_detail import object_list
+#from django.views.generic.list_detail import object_list
 
 admin.autodiscover()
 
@@ -16,21 +16,21 @@ urlpatterns = patterns('',
     url(r'^help/$', 'django.views.generic.simple.direct_to_template', 
         {'template': 'misc/help.html'}, name="help"),
     (r'^events/', include('events.urls')),
-    (r'^friends/', include('socialgraph.urls')),
+    #(r'^friends/', include('socialgraph.urls')),
     (r'^accounts/', include('registration.urls')),
-    url(r'^accounts/latest/$',
-        login_required(object_list),
-        {'queryset': User.objects.order_by('-date_joined'),
-        'paginate_by': 50, 'allow_empty': True},
-        name='user_list'),
-    (r'^profile/', include('profile.urls')),
+    #url(r'^accounts/latest/$',
+    #    login_required(object_list),
+    #    {'queryset': User.objects.order_by('-date_joined'),
+    #    'paginate_by': 50, 'allow_empty': True},
+    #    name='user_list'),
+    #(r'^profile/', include('profile.urls')),
     url(
         r'^settings/$', 
         'django.views.generic.simple.direct_to_template', 
         {'template': 'misc/settings.html'}, 
         name='settings'
     ),
-    (r'^admin/(.*)', admin.site.root),
+    (r'^admin/', include(admin.site.urls)),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', 
         {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
 )
